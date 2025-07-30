@@ -1,12 +1,13 @@
 "use server";
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import {
+  setRefreshToken,
+  setToken,
+} from "../../lib/auth";
 
 const DJANGO_API_LOGIN_URL = "http://127.0.0.1:8001/api/token/pair";
 
 export async function POST(request) {
-  const myAuthToken = (await cookies()).get("auth-token");
-  console.log(myAuthToken);
 
   const requestData = await request.json();
   const jsonData = JSON.stringify(requestData);
@@ -21,18 +22,11 @@ export async function POST(request) {
   const responseData = await response.json();
   if (response.ok) {
     console.log("logged in ");
-    const authToken = responseData.access;
-    cookies().set({
-      name: "auth-token",
-      value: authToken,
-      httpOnly: true, // limit clinet-side js
-      sameSite: "strict",
-      secure: process.env.NODE_ENV !== "development",
-      maxAge: 3600,
-    });
+    const { access, refresh } = responseData;
+    await setToken(access);
+    await setRefreshToken(refresh);
+    return NextResponse.json(
+      { "LoggedIn": true }, { status: 200 });
   }
-
-  // const authToken = (await cookies()).get("auth-token");
-
-  return NextResponse.json({ hello: "world" }, { status: 200 });
+  return NextResponse.json({  "LoggedIn": false,...responseData  }, { status: 400 });
 }

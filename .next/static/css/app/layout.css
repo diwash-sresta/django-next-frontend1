@@ -74,6 +74,8 @@
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
+    --color-red-300: oklch(80.8% 0.114 19.571);
+    --color-red-500: oklch(63.7% 0.237 25.331);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -340,17 +342,26 @@
   .bg-foreground {
     background-color: var(--foreground);
   }
+  .bg-red-500 {
+    background-color: var(--color-red-500);
+  }
   .p-8 {
     padding: calc(var(--spacing) * 8);
   }
   .px-1 {
     padding-inline: calc(var(--spacing) * 1);
   }
+  .px-3 {
+    padding-inline: calc(var(--spacing) * 3);
+  }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
   .py-0\.5 {
     padding-block: calc(var(--spacing) * 0.5);
+  }
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
   }
   .py-5 {
     padding-block: calc(var(--spacing) * 5);
@@ -390,6 +401,9 @@
   .text-background {
     color: var(--background);
   }
+  .text-white {
+    color: var(--color-white);
+  }
   .antialiased {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -417,6 +431,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: #f2f2f2;
+      }
+    }
+  }
+  .hover\:bg-red-300 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-red-300);
       }
     }
   }
