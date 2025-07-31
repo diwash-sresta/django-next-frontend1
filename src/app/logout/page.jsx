@@ -1,10 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useAuth } from "../components/authProvider";
 
 const LOGOUT_URL = "/api/logout";
 
 export default function Page() {
+  const auth = useAuth()
   const router = useRouter();
 
   async function handleClick(event) {
@@ -20,6 +22,7 @@ export default function Page() {
 
     if (response.ok) {
       console.log("logged out ");
+      auth.logout()
       router.replace("/login");
     }
   }
