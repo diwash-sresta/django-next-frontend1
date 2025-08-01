@@ -1,10 +1,3 @@
 {
-  "/api/logout/route": "app/api/logout/route.js",
-  "/api/login/route": "app/api/login/route.js",
-  "/api/waitlists/route": "app/api/waitlists/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/page": "app/page.js",
-  "/waitlists/page": "app/waitlists/page.js",
-  "/login/page": "app/login/page.js",
-  "/logout/page": "app/logout/page.js"
+  "/page": "app/page.js"
 }

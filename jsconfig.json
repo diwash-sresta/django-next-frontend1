@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["src/app/components/*"],
+      "@/lib/*": ["src/app/lib/*"],
+      "@/components/ui/*": ["src/app/components/ui/*"],
+      "@/hooks/*": ["src/app/hooks/*"]
+    }
+  },
+  "include": ["src"]
+}
