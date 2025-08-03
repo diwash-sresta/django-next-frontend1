@@ -30,7 +30,7 @@ export async function POST(request) {
   const jsonData = JSON.stringify(requestData);
   let headers = {
     "Content-Type": "application/json",
-    Accept: "application/json",
+    "Accept": "application/json",
   };
   const authToken = getToken();
   if (authToken) {
@@ -38,9 +38,7 @@ export async function POST(request) {
   }
   const requestOptions = {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: headers,
     body: jsonData,
   };
   const response = await fetch(DJANGO_API_WAITLISTS_URL, requestOptions);
