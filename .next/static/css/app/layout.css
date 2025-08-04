@@ -799,9 +799,6 @@
   .text-left {
     text-align: left;
   }
-  .text-right {
-    text-align: right;
-  }
   .align-middle {
     vertical-align: middle;
   }
@@ -1102,13 +1099,6 @@
     }
     &::placeholder {
       color: var(--muted-foreground);
-    }
-  }
-  .hover\:cursor-pointer {
-    &:hover {
-      @media (hover: hover) {
-        cursor: pointer;
-      }
     }
   }
   .hover\:bg-accent {

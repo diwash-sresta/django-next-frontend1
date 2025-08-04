@@ -9,7 +9,6 @@ export async function GET(request) {
   return NextResponse.json(data, { status });
 }
 
-
 export async function POST(request) {
   const requestData = await request.json();
   const { data, status } = await ApiProxy.post(
@@ -17,11 +16,5 @@ export async function POST(request) {
     requestData,
     true
   );
-
-  if (status >= 200 && status < 300) {
-    return NextResponse.json(data, { status: 200 });
-  } else {
-    return NextResponse.json(data, { status });
-  }
+  return NextResponse.json(data, { status });
 }
-
