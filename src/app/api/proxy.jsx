@@ -1,5 +1,6 @@
-export default class ApiProxy {
+import { getToken } from "@/lib/auth";
 
+export default class ApiProxy {
   static async getHeaders(requireAuth) {
     let headers = {
       "Content-Type": "application/json",
@@ -9,25 +10,37 @@ export default class ApiProxy {
     if (authToken && requireAuth) {
       headers["Authorization"] = `Bearer ${authToken}`;
     }
-    return headers
+    return headers;
   }
-
+  static async handleFetch(endpoiont, requestOptions){
+    let data = {}
+    let status = 500
+    try {
+      const response = await fetch(endpoiont, requestOptions)
+      data = await response.json()
+      status = response.status
+    } catch (error) {
+      data={message: "Cannot reach API server",error:error}
+      status = 500
+    }
+    return {data,status}
+  }
   static async post(endpoiont, object, requireAuth) {
     const jsonData = JSON.stringify(object);
-    const headers = await ApiProxy.getHeaders(requireAuth)
+    const headers = await ApiProxy.getHeaders(requireAuth);
     const requestOptions = {
       method: "POST",
       headers: headers,
       body: jsonData,
     };
-    return await fetch(endpoiont, requestOptions);
+    return await ApiProxy.handleFetch(endpoiont, requestOptions);
   }
   static async get(endpoiont, requireAuth) {
-     const headers = await ApiProxy.getHeaders(requireAuth)
+    const headers = await ApiProxy.getHeaders(requireAuth);
     const requestOptions = {
       method: "GET",
       headers: headers,
     };
-    return await fetch(endpoiont, requestOptions);
+    return await ApiProxy.handleFetch(endpoiont, requestOptions);
   }
 }
