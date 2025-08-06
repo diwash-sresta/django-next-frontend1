@@ -1,0 +1,13 @@
+{
+  "/api/login/route": "/api/login",
+  "/api/hello/route": "/api/hello",
+  "/api/waitlists/route": "/api/waitlists",
+  "/api/logout/route": "/api/logout",
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/waitlists/page": "/waitlists",
+  "/api/page": "/api",
+  "/page": "/",
+  "/login/page": "/login",
+  "/logout/page": "/logout"
+}
