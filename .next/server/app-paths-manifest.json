@@ -1,4 +1,6 @@
 {
-  "/waitlists/page": "app/waitlists/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/hello/route": "app/api/hello/route.js",
+  "/login/page": "app/login/page.js",
   "/page": "app/page.js"
 }

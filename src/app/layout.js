@@ -3,6 +3,7 @@ import "./globals.css";
 import { AuthProvider } from "./components/authProvider";
 import { ThemeProvider } from "./components/themeProvider";
 import BaseLayout from "./components/layout/BaseLayout";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,18 +24,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      ><ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange>
-          <AuthProvider>
-            <BaseLayout className= "flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col bg-muted/40">
-            {children}
-            </BaseLayout>
-          </AuthProvider>
-        </ThemeProvider>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <Suspense fallback ={<div>Loading...</div>} >
+            <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange>
+              <AuthProvider>
+                <BaseLayout className= "flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col bg-muted/40">
+                {children}
+                </BaseLayout>
+              </AuthProvider>
+            </ThemeProvider>
+        </Suspense>
       </body>
     </html>
   );
